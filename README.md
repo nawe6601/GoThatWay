@@ -1,2 +1,1 @@
-# fortest
-testing repo
+GoThatWay github repository for csci 3308
