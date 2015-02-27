@@ -21,6 +21,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var slider1: UISlider!
+    @IBOutlet weak var arr1: UIImageView!
+    @IBAction func slid(sender: AnyObject) {
+        label1.text = "\(round(slider1.value*20)) ft"
+        arr1.transform = CGAffineTransformMakeRotation(CGFloat(slider1.value))
+        arr1.layer.shouldRasterize = true
+    }
 
 }
 
