@@ -7,12 +7,34 @@
 //
 
 import UIKit
+import CoreMotion
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib. 
+    /*
+        let motionManager: CMMotionManager = CMMotionManager()
+    if (motionManager.deviceMotionAvailable) {
+        motionManager.showsDeviceMovementDisplay = true
+        motionManager.magnetometerUpdateInterval = updateInterval
+        motionManager.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrameXArbitraryZVertical, toQueue: queue, withHandler: {
+    (deviceMotion: CMDeviceMotion!, error: NSError!) -> Void in
+    // If no device-motion data is available, the value of this property is nil.
+    if let motion = deviceMotion {
+    println(motion)
+    var accuracy = motion.magneticField.accuracy
+    var x = motion.magneticField.field.x
+    var y = motion.magneticField.field.y
+    var z = motion.magneticField.field.z
+    println("accuracy: \(accuracy.value), x: \(x), y: \(y), z: \(z)")
+    }
+    else {
+    println("Device motion is nil.")
+    }
+    })
+    }*/
     }
 
     
@@ -29,6 +51,9 @@ class ViewController: UIViewController {
         arr1.transform = CGAffineTransformMakeRotation(CGFloat(slider1.value))
         arr1.layer.shouldRasterize = true
     }
+    
+    
+   
 
 }
 
