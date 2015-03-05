@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131033B01AA8C82200012B41 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 131033AF1AA8C82200012B41 /* MapKit.framework */; };
 		E707780B1A9BE04B0032D29F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E707780A1A9BE04B0032D29F /* AppDelegate.swift */; };
 		E707780D1A9BE04B0032D29F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E707780C1A9BE04B0032D29F /* ViewController.swift */; };
 		E70778101A9BE04B0032D29F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E707780E1A9BE04B0032D29F /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		131033AF1AA8C82200012B41 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E70778051A9BE04B0032D29F /* GoThatWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoThatWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E70778091A9BE04B0032D29F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E707780A1A9BE04B0032D29F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				131033B01AA8C82200012B41 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		E70777FC1A9BE04B0032D29F = {
 			isa = PBXGroup;
 			children = (
+				131033AF1AA8C82200012B41 /* MapKit.framework */,
 				E70778071A9BE04B0032D29F /* GoThatWay */,
 				E707781D1A9BE04C0032D29F /* GoThatWayTests */,
 				E70778061A9BE04B0032D29F /* Products */,
