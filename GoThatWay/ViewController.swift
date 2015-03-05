@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 JSAHN. All rights reserved.
 //
 
+
+
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
 
@@ -15,8 +18,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    
-    override func didReceiveMemoryWarning() {
+       override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
