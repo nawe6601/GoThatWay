@@ -15,7 +15,7 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    
+    var timer = NSTimer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +77,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
         })
     }
+    
+    @IBOutlet weak var DirectionLabel: UILabel!
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var slider1: UISlider!
+    @IBOutlet weak var arr1: UIImageView!
+    
     func displayLocationInfo(placemark: CLPlacemark) {
         //once we have location, stop getting location to save battery
         self.locationManager.stopUpdatingLocation()
@@ -86,17 +92,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         println(placemark.country)
     }
 
+    func updateArrow() {
+        arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(self.locationManager.heading.trueHeading)/180.0)*3.14))
+        DirectionLabel.text=self.locationManager.heading.description
+        arr1.layer.shouldRasterize = true
+    }
     
-        func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
             println("Error" + error.localizedDescription)
         
     }
 
-    @IBOutlet weak var DirectionLabel: UILabel!
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var slider1: UISlider!
-    @IBOutlet weak var arr1: UIImageView!
+    
+    
     @IBAction func slid(sender: AnyObject) {
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target:self, selector: Selector("updateArrow"), userInfo: nil,repeats: true)
         label1.text = "\(round(slider1.value*20)) ft"
         //arr1.transform = CGAffineTransformMakeRotation(CGFloat(slider1.value))
         DirectionLabel.text=self.locationManager.heading.description
