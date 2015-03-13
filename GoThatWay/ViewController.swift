@@ -24,9 +24,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        // Start heading updates.
+        if (CLLocationManager.headingAvailable()) {
+            self.locationManager.headingFilter = 5;
+            self.locationManager.startUpdatingHeading()
+        }
+
         
-        
-        // Do any additional setup after loading the view, typically from a nib. 
+        // Do any additional setup after loading the view, typically from a nib.
     /*
         let motionManager: CMMotionManager = CMMotionManager()
     if (motionManager.deviceMotionAvailable) {
@@ -87,12 +92,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
 
+    @IBOutlet weak var DirectionLabel: UILabel!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var slider1: UISlider!
     @IBOutlet weak var arr1: UIImageView!
     @IBAction func slid(sender: AnyObject) {
         label1.text = "\(round(slider1.value*20)) ft"
-        arr1.transform = CGAffineTransformMakeRotation(CGFloat(slider1.value))
+        //arr1.transform = CGAffineTransformMakeRotation(CGFloat(slider1.value))
+        DirectionLabel.text=self.locationManager.heading.description
+        arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(self.locationManager.heading.trueHeading)/180.0)*3.14))
         arr1.layer.shouldRasterize = true
     }
     
