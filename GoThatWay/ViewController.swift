@@ -17,6 +17,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var timer = NSTimer()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,33 +28,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.locationManager.startUpdatingLocation()
         // Start heading updates.
         if (CLLocationManager.headingAvailable()) {
-            self.locationManager.headingFilter = 5;
+            self.locationManager.headingFilter = 1;
             self.locationManager.startUpdatingHeading()
+            //self.locationManager.heading.didChange(changeKind: NSKeyValueChange, valuesAtIndexes: <#NSIndexSet#>, forKey: <#String#>)
+            
         }
-
-        
+       //timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target:self, selector: Selector("updateArrow"), userInfo: self,repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
-    /*
-        let motionManager: CMMotionManager = CMMotionManager()
-    if (motionManager.deviceMotionAvailable) {
-        motionManager.showsDeviceMovementDisplay = true
-        motionManager.magnetometerUpdateInterval = updateInterval
-        motionManager.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrameXArbitraryZVertical, toQueue: queue, withHandler: {
-    (deviceMotion: CMDeviceMotion!, error: NSError!) -> Void in
-    // If no device-motion data is available, the value of this property is nil.
-    if let motion = deviceMotion {
-    println(motion)
-    var accuracy = motion.magneticField.accuracy
-    var x = motion.magneticField.field.x
-    var y = motion.magneticField.field.y
-    var z = motion.magneticField.field.z
-    println("accuracy: \(accuracy.value), x: \(x), y: \(y), z: \(z)")
-    }
-    else {
-    println("Device motion is nil.")
-    }
-    })
-    }*/
+
         
     }
 
@@ -60,7 +43,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBOutlet weak var arr1: UIImageView!
+    @IBOutlet weak var DirectionLabel: UILabel!
     
+    
+    func updateArrow(){
+        if(CLLocationManager.headingAvailable()){
+        //arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(self.locationManager.heading.trueHeading)/180.0)*3.14))
+        arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(self.locationManager.heading.trueHeading)/180.0)*3.14))
+        DirectionLabel.text=self.locationManager.heading.description
+        arr1.layer.shouldRasterize = true
+        }
+    }
+    /*
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error) -> Void in
             
@@ -78,11 +73,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         })
     }
     
-    @IBOutlet weak var DirectionLabel: UILabel!
-    @IBOutlet weak var label1: UILabel!
-    @IBOutlet weak var slider1: UISlider!
-    @IBOutlet weak var arr1: UIImageView!
-    
     func displayLocationInfo(placemark: CLPlacemark) {
         //once we have location, stop getting location to save battery
         self.locationManager.stopUpdatingLocation()
@@ -92,25 +82,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         println(placemark.country)
     }
 
-    func updateArrow() {
-        arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(self.locationManager.heading.trueHeading)/180.0)*3.14))
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
+            println("Error" + error.localizedDescription)
+        
+    }*/
+    func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
+        arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(newHeading.trueHeading)/180.0)*3.14))
         DirectionLabel.text=self.locationManager.heading.description
         arr1.layer.shouldRasterize = true
     }
     
+    func displayLocationInfo(placemark: CLPlacemark) {
+        //once we have location, stop getting location to save battery
+        self.locationManager.stopUpdatingLocation()
+        println(placemark.locality)
+        println(placemark.postalCode)
+        println(placemark.administrativeArea)
+        println(placemark.country)
+    }
+    
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
-            println("Error" + error.localizedDescription)
+        println("Error" + error.localizedDescription)
         
     }
-
-    
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var slider1: UISlider!
     
     @IBAction func slid(sender: AnyObject) {
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target:self, selector: Selector("updateArrow"), userInfo: nil,repeats: true)
+        //timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target:self, selector: Selector("updateArrow"), userInfo: nil,repeats: true)
         label1.text = "\(round(slider1.value*20)) ft"
-        //arr1.transform = CGAffineTransformMakeRotation(CGFloat(slider1.value))
-        DirectionLabel.text=self.locationManager.heading.description
-        arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(self.locationManager.heading.trueHeading)/180.0)*3.14))
+        arr1.transform = CGAffineTransformMakeRotation(CGFloat(slider1.value)*5)
+        //DirectionLabel.text=self.locationManager.heading.description
+        //arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(self.locationManager.heading.trueHeading)/180.0)*3.14))
         arr1.layer.shouldRasterize = true
     }
     
