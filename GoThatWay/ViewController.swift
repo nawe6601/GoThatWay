@@ -15,13 +15,13 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    var timer = NSTimer()
+    //var timer = NSTimer()
     
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
@@ -55,7 +55,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         arr1.layer.shouldRasterize = true
         }
     }
-    /*
+    
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error) -> Void in
             
@@ -85,26 +85,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
             println("Error" + error.localizedDescription)
         
-    }*/
+    }
     func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
         arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(newHeading.trueHeading)/180.0)*3.14))
         DirectionLabel.text=self.locationManager.heading.description
         arr1.layer.shouldRasterize = true
     }
     
-    func displayLocationInfo(placemark: CLPlacemark) {
-        //once we have location, stop getting location to save battery
-        self.locationManager.stopUpdatingLocation()
-        println(placemark.locality)
-        println(placemark.postalCode)
-        println(placemark.administrativeArea)
-        println(placemark.country)
-    }
-    
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
-        println("Error" + error.localizedDescription)
-        
-    }
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var slider1: UISlider!
     
