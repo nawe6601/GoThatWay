@@ -14,6 +14,8 @@
 		E70778121A9BE04B0032D29F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E70778111A9BE04B0032D29F /* Images.xcassets */; };
 		E70778151A9BE04B0032D29F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70778131A9BE04B0032D29F /* LaunchScreen.xib */; };
 		E70778211A9BE04C0032D29F /* GoThatWayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70778201A9BE04C0032D29F /* GoThatWayTests.swift */; };
+		E742BF3F1ACB718800A017EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E707780C1A9BE04B0032D29F /* ViewController.swift */; };
+		E742BF401ACB718D00A017EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E707780E1A9BE04B0032D29F /* Main.storyboard */; };
 		E76749591AA133B200134894 /* Goscreen2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E76749581AA133B200134894 /* Goscreen2.jpg */; };
 		E767495B1AA133BA00134894 /* arrow1.png in Resources */ = {isa = PBXBuildFile; fileRef = E767495A1AA133BA00134894 /* arrow1.png */; };
 /* End PBXBuildFile section */
@@ -214,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E742BF401ACB718D00A017EF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E742BF3F1ACB718800A017EF /* ViewController.swift in Sources */,
 				E70778211A9BE04C0032D29F /* GoThatWayTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

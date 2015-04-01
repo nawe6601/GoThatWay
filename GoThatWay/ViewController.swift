@@ -41,6 +41,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var arr1: UIImageView!
     @IBOutlet weak var DirectionLabel: UILabel!
     
+    @IBOutlet weak var loclabel: UILabel!
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error) -> Void in
             
@@ -50,12 +51,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
             if(placemarks.count > 0){
                 let pm = placemarks[0] as CLPlacemark
-                self.displayLocationInfo(pm)
+                //self.displayLocationInfo(pm)
             }else{
                 println("Error with data")
             }
             
         })
+        loclabel.text = "Altitude: \(round(manager.location.altitude*3.28))"
     }
     
     func displayLocationInfo(placemark: CLPlacemark) {
@@ -74,7 +76,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
         arr1.transform=CGAffineTransformMakeRotation(-((CGFloat(newHeading.trueHeading)/180.0)*3.14))
-        DirectionLabel.text=self.locationManager.heading.description
+        DirectionLabel.text="Heading: \(round(self.locationManager.heading.trueHeading))"
         
     }
     

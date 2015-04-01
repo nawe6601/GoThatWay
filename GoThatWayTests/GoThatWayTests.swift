@@ -14,6 +14,7 @@ class GoThatWayTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
     
     override func tearDown() {
@@ -24,6 +25,23 @@ class GoThatWayTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         XCTAssert(true, "Pass")
+    }
+    
+//    func DISABLE_testHeadingLabel() {
+//        // This is an example of a functional test case.
+//        //let v = ViewController()
+//        var storyboard = UIStoryboard()
+//        var controller = storyboard.instantiateViewControllerWithIdentifier("ViewController") as UINavigationController
+//        let v = ViewController()
+//        controller.viewDidLoad()
+//        XCTAssert(v.DirectionLabel.text == "Heading: \(round(v.locationManager.heading.trueHeading))", "Pass")
+//    }
+    
+    func testInterfaceObjects() {
+        // This is an example of a functional test case.
+        let v = ViewController()
+        
+        XCTAssertNotNil(v, "Pass")
     }
     
     func testPerformanceExample() {
