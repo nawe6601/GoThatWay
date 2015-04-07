@@ -53,20 +53,6 @@ class GoThatWayTests: XCTestCase {
     
     
     
-    
-    
-//    func testViewAutorotate() {
-//        // Test if viewcontroller should autorotate
-//        let v = ViewController()
-//        var loc1 = v.locationManager.location.
-//        XCTAssert(v.shouldAutorotate()==true, "Pass")
-//    }
-    
-    
-    
-    
-    
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
