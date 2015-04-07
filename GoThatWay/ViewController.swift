@@ -60,7 +60,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if(self.DirectionLabel != nil){
             self.DirectionLabel.hidden = true
             self.label1.hidden = true
-            self.newarr.hidden = true
         }
         
     }
@@ -132,16 +131,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if(destlat != 0 && self.label1 != nil){
             self.DirectionLabel.hidden = false
             self.label1.hidden = false
-            self.newarr.hidden = false
         }
         
         if(self.newarr != nil){
-            var dirfin = newHeading.trueHeading + dir1
-            if (dirfin > 360.0){
-                dirfin = dirfin - 360.0
+            if(destlat != 0){
+                var dirfin = newHeading.trueHeading + dir1
+                if (dirfin > 360.0){
+                    dirfin = dirfin - 360.0
+                }
+                newarr.transform=CGAffineTransformMakeRotation(-(CGFloat(dirfin * (M_PI / 180.0))))
             }
-            newarr.transform=CGAffineTransformMakeRotation(-(CGFloat(dirfin * (M_PI / 180.0))))
-            arr1.transform=CGAffineTransformMakeRotation(-(CGFloat(newHeading.trueHeading * (M_PI / 180.0))))
+                        //arr1.transform=CGAffineTransformMakeRotation(-(CGFloat(newHeading.trueHeading * (M_PI / 180.0))))
             //DirectionLabel.text="Heading: \(round(self.locationManager.heading.trueHeading))"
         }
         
