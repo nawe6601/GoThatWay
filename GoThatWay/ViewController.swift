@@ -17,9 +17,6 @@ var dist1 = 0.0
 var dir1 = 0.0
 var showalert = true
 var current_destination = CLLocationCoordinate2DMake(0.0, 0.0)
-//var current_destination = CLLocationCoordinate2DMake(0.0, 0.0)
-//var destlat = 0.0
-//var destlng = 0.0
 var shiftdeg = 0.0
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
@@ -181,16 +178,17 @@ class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
+    {
         if(buttonIndex == 1)
         {
             showalert = false
         }
     }
     
-    @IBAction func centertocurrent(sender: AnyObject) {
+    @IBAction func centertocurrent(sender: AnyObject)
+    {
         self.mymap.setCenterCoordinate(self.locationManager.location.coordinate, animated: true)
-        //self.mymap.setRegion(MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, 2000, 2000), animated: true)
     }
     
     override func didReceiveMemoryWarning()
