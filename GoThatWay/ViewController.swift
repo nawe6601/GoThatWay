@@ -16,6 +16,7 @@ var dist1 = 0.0
 var dir1 = 0.0
 var destlat = 0.0
 var destlng = 0.0
+var shiftdeg = 0.0
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
 {
@@ -77,7 +78,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 {
                     dirfin = dirfin - 360.0
                 }
-                newarr.transform=CGAffineTransformMakeRotation(-(CGFloat(dirfin * (M_PI / 180.0))))
+                if (UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait)
+                {
+                    shiftdeg = 0.0
+                }
+                else if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft)
+                {
+                    shiftdeg = 90.0
+                }
+                else if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight)
+                {
+                    shiftdeg = -90.0
+                }
+                newarr.transform=CGAffineTransformMakeRotation(-(CGFloat((dirfin + shiftdeg) * (M_PI / 180.0))))
                 dolabels()
             }
     }
@@ -121,18 +134,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.label1.text = "\(round((dist1*3.28084)/528.0)/10) miles"
         }
     }
-    
-    override func shouldAutorotate() -> Bool
-    {
-        if (UIDevice.currentDevice().orientation != UIDeviceOrientation.Portrait)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
 }
 
 
@@ -144,11 +145,24 @@ class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewD
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if(self.locationManager.location != nil)
+        if(destlat == 0.0)
         {
             let region = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, 2000, 2000)
             self.mymap.setRegion(region, animated: true)
         }
+        else
+        {
+            var temploc: CLLocation =  CLLocation(latitude: destlat, longitude: destlng)
+            let region = MKCoordinateRegionMakeWithDistance(temploc.coordinate, 2000, 2000)
+            self.mymap.setRegion(region, animated: true)
+            var tempcenter: CLLocationCoordinate2D =  CLLocationCoordinate2D(latitude: destlat, longitude: destlng)
+            self.mymap.setCenterCoordinate(tempcenter, animated: false)
+        }
+    }
+    
+    @IBAction func centertocurrent(sender: AnyObject) {
+        let region = MKCoordinateRegionMakeWithDistance(self.locationManager.location.coordinate, 2000, 2000)
+        self.mymap.setRegion(region, animated: true)
     }
     override func didReceiveMemoryWarning()
     {
