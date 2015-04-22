@@ -18,16 +18,16 @@ var dir1 = 0.0
 var showalert = true
 var current_destination = CLLocationCoordinate2DMake(0.0, 0.0)
 var shiftdeg = 0.0
+var dorun = false
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
-{
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    @IBOutlet weak var xbutton: UIButton!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var newarr: UIImageView!
     let locationManager = CLLocationManager()
     var myloc = CLLocation()
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.locationManager.delegate = self
@@ -43,70 +43,72 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.locationManager.headingFilter = 1;
             self.locationManager.startUpdatingHeading()
         }
-        self.label1.text = "Tap screen for map"
+        
+        if(!dorun)
+        {
+            turnoff()
+        }
+        else
+        {
+            turnon()
+        }
     }
 
-    override func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
-    {
-        self.getdir(manager.location)
-        self.getdist(manager.location)
-        if(current_destination.latitude != 0.0)
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        if(dorun)
         {
+            self.getdir(manager.location)
+            self.getdist(manager.location)
             dolabels()
         }
     }
 
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!)
-    {
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
             println("Error" + error.localizedDescription)
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!)
-    {
-            if(current_destination.latitude != 0.0 && self.locationManager.location != nil)
+    
+    func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
+        if(dorun && self.locationManager.location != nil)
+        {
+            getdir(manager.location)
+            getdist(manager.location)
+            var dirfin = newHeading.trueHeading + dir1
+            if (dirfin > 360.0)
             {
-                getdir(manager.location)
-                getdist(manager.location)
-                var dirfin = newHeading.trueHeading + dir1
-                if (dirfin > 360.0)
-                {
-                    dirfin = dirfin - 360.0
-                }
-                if (UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait)
-                {
-                    shiftdeg = 0.0
-                }
-                else if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft)
-                {
-                    shiftdeg = 90.0
-                }
-                else if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight)
-                {
-                    shiftdeg = -90.0
-                }
-                newarr.transform=CGAffineTransformMakeRotation(-(CGFloat((dirfin + shiftdeg) * (M_PI / 180.0))))
-                dolabels()
+                dirfin = dirfin - 360.0
             }
+            if (UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait)
+            {
+                shiftdeg = 0.0
+            }
+            else if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeLeft)
+            {
+                shiftdeg = 90.0
+            }
+            else if (UIDevice.currentDevice().orientation == UIDeviceOrientation.LandscapeRight)
+            {
+                shiftdeg = -90.0
+            }
+            newarr.transform=CGAffineTransformMakeRotation(-(CGFloat((dirfin + shiftdeg) * (M_PI / 180.0))))
+            dolabels()
+        }
     }
     
-    func number(x: NSInteger) -> NSInteger
-    {
+    func number(x: NSInteger) -> NSInteger {
         return x*x
     }
 
-    func getdist(myloc: CLLocation)
-    {
+    func getdist(myloc: CLLocation) {
         var tempdest: CLLocation =  CLLocation(latitude: current_destination.latitude, longitude: current_destination.longitude)
         dist1 = myloc.distanceFromLocation(tempdest) as Double
     }
-    func getdir(myloc: CLLocation)
-    {
+    func getdir(myloc: CLLocation) {
         var lat1rad = myloc.coordinate.latitude * (M_PI/180.0)
         var lng1rad = myloc.coordinate.longitude * (M_PI/180.0)
         var lat2rad = current_destination.latitude * (M_PI/180.0)
@@ -119,8 +121,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         dir1 = dir0
     }
     
-    func dolabels()
-    {
+    func dolabels() {
         var tempdist = (dist1*3.28084)/5280.0
         var tempunit = " miles"
         var tempformat = "%.0f"
@@ -140,16 +141,54 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         self.label1.text = String(format: tempformat + tempunit, tempdist)
     }
+    
+    @IBAction func gotomap(sender: AnyObject) {
+        self.locationManager.startUpdatingHeading()
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction func stopguidance(sender: AnyObject) {
+        if(dorun){
+            dorun = false
+            turnoff()
+        }
+        else
+        {
+            dorun = true
+            turnon()
+        }
+    }
+    
+    func turnon() {
+        self.locationManager.startUpdatingHeading()
+        self.locationManager.startUpdatingLocation()
+        xbutton.hidden = false
+        xbutton.setTitle("stop", forState: UIControlState.Normal)
+    }
+    
+    func turnoff() {
+        if(current_destination.latitude == 0.0)
+        {
+            xbutton.hidden = true
+        }
+        else
+        {
+            xbutton.setTitle("start", forState: UIControlState.Normal)
+        }
+        self.locationManager.stopUpdatingHeading()
+        self.locationManager.stopUpdatingLocation()
+        //xbutton.hidden = true
+        self.label1.text = "Tap screen for map"
+        newarr.transform=CGAffineTransformMakeRotation(0)
+    }
 }
 
-class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
-{
+class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var mymap: MKMapView!
     let locationManager = CLLocationManager()
     let mapManager = MKMapView()
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if(self.locationManager.location != nil)
@@ -178,27 +217,24 @@ class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
-    {
+    func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         if(buttonIndex == 1)
         {
             showalert = false
         }
     }
     
-    @IBAction func centertocurrent(sender: AnyObject)
-    {
+    @IBAction func centertocurrent(sender: AnyObject) {
         self.mymap.setCenterCoordinate(self.locationManager.location.coordinate, animated: true)
     }
     
-    override func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func HomeButtonPressed(sender: AnyObject)
-    {
+    @IBAction func HomeButtonPressed(sender: AnyObject) {
         current_destination = mymap.centerCoordinate
+        dorun = true
     }
 }
