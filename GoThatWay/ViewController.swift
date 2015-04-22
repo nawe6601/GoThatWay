@@ -99,11 +99,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             dolabels()
         }
     }
+    /**
+        Just a test function.
+        
+        Squares a number.
     
+        :param: x An integer to be squared.
+    
+        :returns: The square of the input.
+    */
     func number(x: NSInteger) -> NSInteger {
         return x*x
     }
 
+    /**
+        Get distance function.
+    
+        :param: A location.
+    
+        :returns: A distance.
+    */
     func getdist(myloc: CLLocation) {
         var tempdest: CLLocation =  CLLocation(latitude: current_destination.latitude, longitude: current_destination.longitude)
         dist1 = myloc.distanceFromLocation(tempdest) as Double
