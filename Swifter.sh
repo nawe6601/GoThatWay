@@ -1,5 +1,12 @@
 #!/bin/bash
-#Jesse Wisniewski
+# Swifter - simple Swift autodoc HTML generator
+# GoThatWay Team
+#
+# Uses: /** to start block
+# Then: description starting on next line, can be multiple lines
+# then: :param: <parameter name> <parameter description>
+# then: :returns: <description of return value> 
+# and: */ to end
 
 if (($# == 2)) && [[ -f "$1" ]]; then
 
