@@ -14,7 +14,6 @@ class GoThatWayTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
     }
     
     override func tearDown() {
@@ -27,22 +26,37 @@ class GoThatWayTests: XCTestCase {
         XCTAssert(true, "Pass")
     }
     
-//    func DISABLE_testHeadingLabel() {
-//        // This is an example of a functional test case.
-//        //let v = ViewController()
-//        var storyboard = UIStoryboard()
-//        var controller = storyboard.instantiateViewControllerWithIdentifier("ViewController") as UINavigationController
-//        let v = ViewController()
-//        controller.viewDidLoad()
-//        XCTAssert(v.DirectionLabel.text == "Heading: \(round(v.locationManager.heading.trueHeading))", "Pass")
-//    }
+    func testAFunction() {
+        // Test a simple function
+        let v = ViewController()
+        XCTAssertEqual(9, v.number(3), "Pass")
+    }
     
-    func testInterfaceObjects() {
+    func testViewControllerNotNil() {
         // This is an example of a functional test case.
         let v = ViewController()
-        
         XCTAssertNotNil(v, "Pass")
     }
+    
+    func testViewDidLoad() {
+        // Test if viewcontroller loads
+        let v = ViewController()
+        v.loadView()
+        XCTAssert(v.isViewLoaded(), "Pass")
+    }
+    
+    func testViewAutorotate() {
+        // Test if viewcontroller will autorotate
+        let v = ViewController()
+        XCTAssert(v.shouldAutorotate()==true, "Pass")
+    }
+    
+    func testViewAutorotateMap() {
+        // Test if viewcontroller will autorotate
+        let v = ViewControllerMap()
+        XCTAssert(v.shouldAutorotate()==true, "Pass")
+    }
+    
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
