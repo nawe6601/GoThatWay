@@ -1,5 +1,5 @@
 <html>
-<h3>AutoDoc for file: ViewController.swift</h3>
+<h3>AutoDoc for file: GoThatWay/ViewController.swift</h3>
 <h5>Swifter v.1, by GoThatWay team</h5>
 <head>
 <style type="text/css">
@@ -22,13 +22,29 @@ tr:nth-child(odd) {
 </style>
 </head>
 <body>
-<h3>Function 1: <em>number()</em></h3>
-<table><tr><td><strong>Declaration:</strong></td><td>
-func number(x: NSInteger) -> NSInteger
-</td></tr><tr><td><strong>Description:</strong></td><td>Just a test function.<br><br>Squares a number.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>x:</em> An integer to be squared.<br><br></td></tr><tr><td><strong>Returns:</strong></td><td>The square of the input.</td></tr></table><br>
-<h3>Function 2: <em>getdist()</em></h3>
+<h3>Function 1: <em>getdist</em></h3>
 <table><tr><td><strong>Declaration:</strong></td><td>
 func getdist(myloc: CLLocation)
-</td></tr><tr><td><strong>Description:</strong></td><td>Get distance function.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>A:</em> location.<br><br></td></tr><tr><td><strong>Returns:</strong></td><td>A distance.</td></tr></table><br>
+</td></tr><tr><td><strong>Description:</strong></td><td>Get distance function.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>myloc:  </em> The user's current location.<br><br></td></tr><tr><td><strong>Returns:</strong></td><td>Nothing. Sets a global variable to the distance to the stored location.</td></tr></table><br>
+<h3>Function 2: <em>getdir</em></h3>
+<table><tr><td><strong>Declaration:</strong></td><td>
+func getdir(myloc: CLLocation)
+</td></tr><tr><td><strong>Description:</strong></td><td>Get direction function.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>myloc:  </em> A location variable.<br><br></td></tr><tr><td><strong>Returns:</strong></td><td>Nothing. Sets a global variable to the direction to the stored location.</td></tr></table><br>
+<h3>Function 3: <em>dolabels</em></h3>
+<table><tr><td><strong>Declaration:</strong></td><td>
+func dolabels()
+</td></tr><tr><td><strong>Description:</strong></td><td>Generates labels depending on the distance to the stored location.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>None.  </em> <br><br></td></tr><tr><td><strong>Returns:</strong></td><td>Nothing. Sets distance label to a value in either miles, feet, or yards depending on distance.</td></tr></table><br>
+<h3>Function 4: <em>turnon</em></h3>
+<table><tr><td><strong>Declaration:</strong></td><td>
+func turnon()
+</td></tr><tr><td><strong>Description:</strong></td><td>Restarts heading and location updates.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>None.  </em> <br><br></td></tr><tr><td><strong>Returns:</strong></td><td>None.</td></tr></table><br>
+<h3>Function 5: <em>turnoff</em></h3>
+<table><tr><td><strong>Declaration:</strong></td><td>
+func turnoff()
+</td></tr><tr><td><strong>Description:</strong></td><td>Turns off heading and location updates.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>None.  </em> <br><br></td></tr><tr><td><strong>Returns:</strong></td><td>None.</td></tr></table><br>
+<h3>Function 6: <em>alertView</em></h3>
+<table><tr><td><strong>Declaration:</strong></td><td>
+func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int)
+</td></tr><tr><td><strong>Description:</strong></td><td>Turns off the instructions message.<br><br></td></tr><tr><td><strong>Parameters:</strong></td><td><em>View:  </em> The view that is calling the function.<br><br><em>buttonIndex:  </em> The index of the button that was pressed.<br><br></td></tr><tr><td><strong>Returns:</strong></td><td>None.</td></tr></table><br>
 </body>
 </html>

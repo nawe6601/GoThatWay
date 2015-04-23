@@ -49,7 +49,7 @@ if (($# == 1)) && [[ -f "$1" ]]; then
         if [ "$funcdef" == "yes" ] ; then
             funcdef="no"
             funcnum=$(($funcnum+1))
-            echo "<h3>Function $funcnum: <em>${line[1]%%(*}()</em></h3>" >> $outfile 
+            echo "<h3>Function $funcnum: <em>${line[1]%%(*}</em></h3>" >> $outfile 
             echo '<table><tr><td><strong>Declaration:</strong></td><td>' >> $outfile
             echo "${line[@]:0:$((${#line[@]} - 1))}" >> $outfile
             echo "</td></tr>$outstr" >> $outfile
@@ -71,7 +71,7 @@ if (($# == 1)) && [[ -f "$1" ]]; then
                         outstr+='<td><strong>Parameters:</strong></td><td>'
                         firstparam="no"
                     fi
-                    outstr+="<em>${line[@]:1:1}:</em> ${line[@]:2}<br><br>"
+                    outstr+="<em>${line[@]:1:1}  </em> ${line[@]:2}<br><br>"
                     printline="no"
                 elif [ "${line[0]}" == ":returns:" ] ; then
                     outstr+="</td></tr><tr><td><strong>Returns:</strong></td><td>"
