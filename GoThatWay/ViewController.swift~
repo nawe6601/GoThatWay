@@ -106,7 +106,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     /**
         Get distance function.
     
-        :param: The user's current location.
+        :param: myloc: The user's current location.
     
         :returns: The distance to the stored location.
     */
@@ -117,7 +117,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     /**
         Get direction function.
     
-        :param: A location variable.
+        :param: myloc: A location variable.
     
         :returns: The direction to the stored location.
     */
