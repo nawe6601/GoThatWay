@@ -99,15 +99,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             dolabels()
         }
     }
-    /**
-        Just a test function.
-        
-        Squares a number.
-    
-        :param: x An integer to be squared.
-    
-        :returns: The square of the input.
-    */
     func number(x: NSInteger) -> NSInteger {
         return x*x
     }
@@ -115,9 +106,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     /**
         Get distance function.
     
-        :param: A location.
+        :param: The user's current location.
     
-        :returns: A distance.
+        :returns: The distance to the stored location.
     */
     func getdist(myloc: CLLocation) {
         var tempdest: CLLocation =  CLLocation(latitude: current_destination.latitude, longitude: current_destination.longitude)
@@ -126,11 +117,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     /**
         Get direction function.
     
-        :param: A location.
+        :param: A location variable.
     
         :returns: The direction to the stored location.
     */
-
     func getdir(myloc: CLLocation) {
         var lat1rad = myloc.coordinate.latitude * (M_PI/180.0)
         var lng1rad = myloc.coordinate.longitude * (M_PI/180.0)
@@ -150,7 +140,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
         :returns: Either miles, feet, or yards depending on distance.
     */
-  
     func dolabels() {
         var tempdist = (dist1*3.28084)/5280.0
         var tempunit = " miles"
@@ -195,7 +184,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
 	:returns: None.
     */
-   
     func turnon() {
         self.locationManager.startUpdatingHeading()
         self.locationManager.startUpdatingLocation()
@@ -210,7 +198,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 	:returns: None.
 
     */
-
     func turnoff() {
         if(current_destination.latitude == 0.0)
         {
@@ -264,12 +251,11 @@ class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewD
     /**
 	Turns off the instructions message.
     
-        :param: view
-        :param: buttonIndex
+        :param: View: The view that is calling the function.
+        :param: buttonIndex: The index of the button that was pressed.
 
         :returns: None.
     */
-
     func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         if(buttonIndex == 1)
         {

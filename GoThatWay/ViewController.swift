@@ -99,15 +99,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             dolabels()
         }
     }
-    /**
-        Just a test function.
-        
-        Squares a number.
-    
-        :param: x An integer to be squared.
-    
-        :returns: The square of the input.
-    */
     func number(x: NSInteger) -> NSInteger {
         return x*x
     }
@@ -115,9 +106,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     /**
         Get distance function.
     
-        :param: A location.
+        :param: The user's current location.
     
-        :returns: A distance.
+        :returns: The distance to the stored location.
     */
     func getdist(myloc: CLLocation) {
         var tempdest: CLLocation =  CLLocation(latitude: current_destination.latitude, longitude: current_destination.longitude)
@@ -126,7 +117,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     /**
         Get direction function.
     
-        :param: A location.
+        :param: A location variable.
     
         :returns: The direction to the stored location.
     */
@@ -260,8 +251,8 @@ class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewD
     /**
 	Turns off the instructions message.
     
-        :param: view
-        :param: buttonIndex
+        :param: View: The view that is calling the function.
+        :param: buttonIndex: The index of the button that was pressed.
 
         :returns: None.
     */
