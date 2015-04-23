@@ -108,7 +108,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
         :param: myloc: The user's current location.
     
-        :returns: The distance to the stored location.
+        :returns: Nothing. Sets a global variable to the distance to the stored location.
     */
     func getdist(myloc: CLLocation) {
         var tempdest: CLLocation =  CLLocation(latitude: current_destination.latitude, longitude: current_destination.longitude)
@@ -119,7 +119,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
         :param: myloc: A location variable.
     
-        :returns: The direction to the stored location.
+        :returns: Nothing. Sets a global variable to the direction to the stored location.
     */
     func getdir(myloc: CLLocation) {
         var lat1rad = myloc.coordinate.latitude * (M_PI/180.0)
@@ -138,7 +138,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
         :param: None.
     
-        :returns: Either miles, feet, or yards depending on distance.
+        :returns: Nothing. Sets distance label to a value in either miles, feet, or yards depending on distance.
     */
     func dolabels() {
         var tempdist = (dist1*3.28084)/5280.0
