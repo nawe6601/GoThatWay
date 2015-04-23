@@ -28,7 +28,7 @@ if (($# == 1)) && [[ -f "$1" ]]; then
     echo '    vertical-align: top;' >> $outfile
     echo '}' >> $outfile
     echo 'td {' >> $outfile
-    echo '    padding: 5px;' >> $outfile
+    echo '    padding: 4px;' >> $outfile
     echo '    vertical-align: top;' >> $outfile
     echo '}' >> $outfile
     echo 'tr:nth-child(odd) {' >> $outfile
