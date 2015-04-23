@@ -130,7 +130,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
         :returns: The direction to the stored location.
     */
-
     func getdir(myloc: CLLocation) {
         var lat1rad = myloc.coordinate.latitude * (M_PI/180.0)
         var lng1rad = myloc.coordinate.longitude * (M_PI/180.0)
@@ -150,7 +149,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
         :returns: Either miles, feet, or yards depending on distance.
     */
-  
     func dolabels() {
         var tempdist = (dist1*3.28084)/5280.0
         var tempunit = " miles"
@@ -195,7 +193,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
 	:returns: None.
     */
-   
     func turnon() {
         self.locationManager.startUpdatingHeading()
         self.locationManager.startUpdatingLocation()
@@ -210,7 +207,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 	:returns: None.
 
     */
-
     func turnoff() {
         if(current_destination.latitude == 0.0)
         {
@@ -269,7 +265,6 @@ class ViewControllerMap: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
         :returns: None.
     */
-
     func alertView(View: UIAlertView!, clickedButtonAtIndex buttonIndex: Int) {
         if(buttonIndex == 1)
         {
