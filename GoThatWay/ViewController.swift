@@ -142,17 +142,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     */
     func dolabels() {
         var tempdist = (dist1*3.28084)/5280.0
-        var tempunit = " miles"
+        var tempunit = " MI"
         var tempformat = "%.0f"
         if (tempdist < 0.1)
         {
             tempdist = dist1*3.28084
-            tempunit = " feet"
+            tempunit = " FT"
         }
         else if (tempdist < 0.5)
         {
             tempdist = (dist1*3.28084)/3.0
-            tempunit = " yards"
+            tempunit = " YDS"
         }
         else if (tempdist < 50)
         {
@@ -188,7 +188,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.locationManager.startUpdatingHeading()
         self.locationManager.startUpdatingLocation()
         xbutton.hidden = false
-        xbutton.setTitle("stop", forState: UIControlState.Normal)
+        xbutton.setTitle("STOP", forState: UIControlState.Normal)
     }
       /**
         Turns off heading and location updates.
@@ -205,12 +205,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         else
         {
-            xbutton.setTitle("start", forState: UIControlState.Normal)
+            xbutton.setTitle("START", forState: UIControlState.Normal)
         }
         self.locationManager.stopUpdatingHeading()
         self.locationManager.stopUpdatingLocation()
         //xbutton.hidden = true
-        self.label1.text = "Tap screen for map"
+        self.label1.text = "TAP SCREEN"
         newarr.transform=CGAffineTransformMakeRotation(0)
     }
 }
